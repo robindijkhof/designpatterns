@@ -13,6 +13,8 @@ import java.util.Vector;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
+//Kevin Test
+
 public class Slide {
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 800;
