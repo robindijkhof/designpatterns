@@ -1,6 +1,9 @@
 import javax.swing.JOptionPane;
-
 import java.io.IOException;
+import model.*;
+
+import utils.Accessor;
+import utils.XMLAccessor;
 
 /** JabberPoint Main Programma
  * <p>This program is distributed under the terms of the accompanying

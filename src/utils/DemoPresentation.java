@@ -1,5 +1,6 @@
+package utils;
 import model.*;
-import utils.Accessor;
+import view.BitmapItem;
 
 /** Een ingebouwde demo-presentatie
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman

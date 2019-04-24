@@ -1,7 +1,9 @@
+package model;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 import java.util.Vector;
+import view.TextItem;
 
 /** <p>Een slide. Deze klasse heeft tekenfunctionaliteit.</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
@@ -13,7 +15,6 @@ import java.util.Vector;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-//Kevin Test2
 
 public class Slide {
 	public final static int WIDTH = 1200;

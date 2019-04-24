@@ -1,3 +1,4 @@
+package view;
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,6 +13,10 @@ import java.text.AttributedString;
 import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
+
+import model.SlideItem;
+import model.Style;
+import model.Slide;
 
 /** <p>Een tekst item.</p>
  * <p>Een TextItem heeft tekenfunctionaliteit.</p>

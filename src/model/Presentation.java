@@ -1,5 +1,6 @@
+package model;
 import java.util.ArrayList;
-
+import view.SlideViewerComponent;
 
 /**
  * <p>Presentation houdt de slides in de presentatie bij.</p>
@@ -73,7 +74,7 @@ public class Presentation {
 	}
 
 	// Verwijder de presentatie, om klaar te zijn voor de volgende
-	void clear() {
+	public void clear() {
 		showList = new ArrayList<Slide>();
 		setSlideNumber(-1);
 	}

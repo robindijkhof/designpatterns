@@ -2,6 +2,11 @@ import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
+import model.Presentation;
+
+import view.SlideViewerComponent;
+import controller.MenuController;
+import controller.KeyController;
 
 /**
  * <p>Het applicatiewindow voor een slideviewcomponent</p>

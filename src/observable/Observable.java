@@ -13,8 +13,6 @@ public class Observable<T> {
                 observer.onResult(object);
             }
         });
-
-
         this.object = object;
     }
 
