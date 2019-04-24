@@ -4,6 +4,7 @@ import model.*;
 
 import utils.Accessor;
 import utils.XMLAccessor;
+import view.SlideViewerFrame;
 
 /** JabberPoint Main Programma
  * <p>This program is distributed under the terms of the accompanying
