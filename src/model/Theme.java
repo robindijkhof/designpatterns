@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Theme {
 
-    public Color color = Color.black;
+    public Color color = Color.white;
     public boolean showPageNumber = true;
     public Style[] styles = new Style[] {new Style()};
 

@@ -1,12 +1,12 @@
 package utils.themefactory;
 
-import model.Theme;
+import model.AppTheme;
 
 public class ThemeFactory {
     private ThemeFactory(){}
 
 
-    public static Theme getTheme(int themeNumber){
+    public static AppTheme getTheme(int themeNumber){
 
         switch (themeNumber){
             case 0: return new DefaultThemeFactory().getTheme();

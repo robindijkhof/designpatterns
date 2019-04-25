@@ -1,5 +1,6 @@
 package utils.themefactory;
 
+import model.AppTheme;
 import model.Style;
 import model.Theme;
 import utils.StyleBuilder;
@@ -8,7 +9,7 @@ import java.awt.*;
 
 class FirstThemeFactory implements AbstractThemeFactory {
     @Override
-    public Theme getTheme() {
+    public AppTheme getTheme() {
         Theme theme = new Theme();
         theme.color = Color.gray;
         theme.showPageNumber = false;
@@ -20,6 +21,6 @@ class FirstThemeFactory implements AbstractThemeFactory {
                 new StyleBuilder().setIndent(0).setColor(Color.black).setFontSize(6).setLeading(10).build()
         };
 
-        return theme;
+        return new AppTheme(theme, new Theme());
     }
 }

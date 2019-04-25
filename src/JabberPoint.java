@@ -37,7 +37,7 @@ public class JabberPoint {
 
 	public JabberPoint(String argv[]) {
 		//Init the first theme
-		AppState.$theme.next(ThemeFactory.getTheme(0));
+		AppState.$appTheme.next(ThemeFactory.getTheme(1));
 
 		presentationController = new PresentationController();
 		

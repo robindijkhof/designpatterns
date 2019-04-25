@@ -5,9 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+
 import model.*;
-import utils.themefactory.ThemeFactory;
 import utils.AppState;
 
 
@@ -27,6 +26,7 @@ public class SlideViewerComponent extends JComponent {
 	private Font labelFont = null; // het font voor labels
 	//private Presentation presentation = null; // de presentatie
 	//private JFrame frame = null;
+	private AppTheme appTheme;
 	private Theme theme;
 
 	private static final long serialVersionUID = 227L;
@@ -48,7 +48,7 @@ public class SlideViewerComponent extends JComponent {
 		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
 		//this.frame = frame;
 
-		AppState.$theme.subscribe(theme -> this.theme = theme);
+		AppState.$appTheme.subscribe(appTheme -> this.appTheme = appTheme);
 
 
 
@@ -61,6 +61,8 @@ public class SlideViewerComponent extends JComponent {
 	public void update(/*Presentation presentation,*/ Slide data, int slideNumberCurrent, int slideNumberMax) {
 		this.slideNumberCurrent = slideNumberCurrent;
 		this.slideNumberMax = slideNumberMax;
+		theme = appTheme.getTheme(slideNumberCurrent);
+
 		if (data == null) {
 			repaint();
 			return;
@@ -73,7 +75,7 @@ public class SlideViewerComponent extends JComponent {
 
 // teken de slide
 	public void paintComponent(Graphics g) {
-		g.setColor(BGCOLOR);
+		g.setColor(theme.color);
 		g.fillRect(0, 0, getSize().width, getSize().height);
 		/*
 		if (presentation.getSlideNumber() < 0 || slide == null) {
@@ -90,7 +92,10 @@ public class SlideViewerComponent extends JComponent {
 		/*
 		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
                  presentation.getSize(), XPOS, YPOS);  //TODO: add functionality*/
-		g.drawString("Slide " + (1 + slideNumberCurrent) + " of " + slideNumberMax, XPOS, YPOS);
+
+		if(theme.showPageNumber){
+			g.drawString("Slide " + (1 + slideNumberCurrent) + " of " + slideNumberMax, XPOS, YPOS);
+		}
 
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 		slide.draw(g, area, this, theme);
