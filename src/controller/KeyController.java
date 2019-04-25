@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import model.Presentation;
 
+
 /** <p>This is the KeyController (KeyListener)</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.1 2002/12/17 Gert Florijn
@@ -14,10 +15,10 @@ import model.Presentation;
 */
 
 public class KeyController extends KeyAdapter {
-	private Presentation presentation; // Er worden commando's gegeven aan de presentatie
+	private PresentationController presentationController; // Er worden commando's gegeven aan de presentatie
 
-	public KeyController(Presentation p) {
-		presentation = p;
+	public KeyController(PresentationController presentationController) {
+		this.presentationController = presentationController;
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
@@ -26,12 +27,12 @@ public class KeyController extends KeyAdapter {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
 			case '+':
-				presentation.nextSlide();
+				this.presentationController.nextSlide();
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
 			case '-':
-				presentation.prevSlide();
+				this.presentationController.prevSlide();
 				break;
 			case 'q':
 			case 'Q':

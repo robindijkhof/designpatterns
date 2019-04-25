@@ -27,10 +27,13 @@ public class SlideViewerFrame extends JFrame {
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 800;
 	
+	
+	private SlideViewerComponent slideViewerComponent;
+	
 	public SlideViewerFrame(String title, Presentation presentation) {
 		super(title);
-		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-		presentation.setShowView(slideViewerComponent);
+		this.slideViewerComponent = new SlideViewerComponent();
+		//presentation.setShowView(slideViewerComponent);
 		setupWindow(slideViewerComponent, presentation);
 	}
 
@@ -44,9 +47,14 @@ public class SlideViewerFrame extends JFrame {
 				}
 			});
 		getContentPane().add(slideViewerComponent);
-		addKeyListener(new KeyController(presentation)); // een controller toevoegen
-		setMenuBar(new MenuController(this, presentation));	// nog een controller toevoegen
+		//addKeyListener(new KeyController(presentation)); // een controller toevoegen
+		//setMenuBar(new MenuController(this, presentation));	// nog een controller toevoegen
 		setSize(new Dimension(WIDTH, HEIGHT)); // Dezelfde maten als Slide hanteert.
 		setVisible(true);
+	}
+	
+	
+	public SlideViewerComponent GetSlideViewerComponent() {
+		return slideViewerComponent;
 	}
 }
