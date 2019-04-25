@@ -3,7 +3,9 @@ import java.io.IOException;
 import model.*;
 
 import utils.Accessor;
+import utils.AppState;
 import utils.XMLAccessor;
+import utils.themefactory.ThemeFactory;
 import view.SlideViewerFrame;
 
 /** JabberPoint Main Programma
@@ -27,8 +29,9 @@ public class JabberPoint {
 
 	/** Het Main Programma */
 	public static void main(String argv[]) {
+		//Init the first theme
+		AppState.$theme.next(ThemeFactory.getTheme(1));
 		
-		Style.createStyles();
 		Presentation presentation = new Presentation();
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {

@@ -1,4 +1,4 @@
-package utils.themefacotry;
+package utils.themefactory;
 
 import model.Theme;
 

@@ -40,7 +40,7 @@ public class Slide {
 
 	// verander de titel van de slide
 	public void setTitle(String newTitle) {
-		/* Creëer nu een TextItem op basis van de nieuwe titel */
+		/* Creï¿½er nu een TextItem op basis van de nieuwe titel */
 		title = new TextItem(0, newTitle);
 	}
 
@@ -64,17 +64,17 @@ public class Slide {
 		return items.size();
 	}
 
-	public void draw(Graphics g, Rectangle area, ImageObserver view) {
+	public void draw(Graphics g, Rectangle area, ImageObserver view, Theme theme) {
 		float scale = getScale(area);
 	    int y = area.y;
 		/* De titel hoeft niet meer apart behandeld te worden */
 	    SlideItem slideItem = this.title;
-	    Style style = Style.getStyle(slideItem.getLevel());
+	    Style style = theme.getStyle(slideItem.getLevel());
 	    slideItem.draw(area.x, y, scale, g, style, view);
 	    y += slideItem.getBoundingBox(g, view, scale, style).height;
 	    for (int number=0; number<getSize(); number++) {
 	      slideItem = (SlideItem)getSlideItems().elementAt(number);
-	      style = Style.getStyle(slideItem.getLevel());
+	      style = theme.getStyle(slideItem.getLevel());
 	      slideItem.draw(area.x, y, scale, g, style, view);
 	      y += slideItem.getBoundingBox(g, view, scale, style).height;
 	    }

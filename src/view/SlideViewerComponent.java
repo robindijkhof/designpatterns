@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import model.*;
+import utils.themefactory.ThemeFactory;
+import utils.AppState;
 
 
 /** <p>SlideViewerComponent is een grafische component die Slides kan laten zien.</p>
@@ -25,6 +27,7 @@ public class SlideViewerComponent extends JComponent {
 	private Font labelFont = null; // het font voor labels
 	private Presentation presentation = null; // de presentatie
 	private JFrame frame = null;
+	private Theme theme;
 	
 	private static final long serialVersionUID = 227L;
 	
@@ -41,6 +44,11 @@ public class SlideViewerComponent extends JComponent {
 		presentation = pres;
 		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
 		this.frame = frame;
+
+		AppState.$theme.subscribe(theme -> this.theme = theme);
+
+
+
 	}
 
 	public Dimension getPreferredSize() {
@@ -70,6 +78,6 @@ public class SlideViewerComponent extends JComponent {
 		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
                  presentation.getSize(), XPOS, YPOS);
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-		slide.draw(g, area, this);
+		slide.draw(g, area, this, theme);
 	}
 }
