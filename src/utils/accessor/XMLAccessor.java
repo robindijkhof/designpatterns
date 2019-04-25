@@ -1,4 +1,4 @@
-package utils;
+package utils.accessor;
 import java.util.Vector;
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +19,8 @@ import org.w3c.dom.NodeList;
 import model.Presentation;
 import model.Slide;
 import model.SlideItem;
-import view.BitmapItem;
-import view.TextItem;
+import model.BitmapItem;
+import model.TextItem;
 
 
 /** XMLAccessor, reads and writes XML files
@@ -60,7 +60,8 @@ public class XMLAccessor extends Accessor {
     	
     }
 
-	public void loadFile(Presentation presentation, String filename) throws IOException {
+	public Presentation loadFile(String filename) throws IOException {
+    	Presentation presentation = new Presentation();
 		int slideNumber, itemNumber, max = 0, maxItems = 0;
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();    
@@ -93,6 +94,8 @@ public class XMLAccessor extends Accessor {
 		catch (ParserConfigurationException pcx) {
 			System.err.println(PCE);
 		}
+
+		return presentation;
 		
 	}
 

@@ -5,6 +5,7 @@ import java.awt.event.WindowAdapter;
 import javax.swing.JFrame;
 import model.Presentation;
 
+import utils.AppState;
 import view.SlideViewerComponent;
 import controller.MenuController;
 import controller.KeyController;
@@ -20,7 +21,7 @@ import controller.KeyController;
  * @version 1.6 2014/05/16 Sylvia Stuurman
 */
 
-public class SlideViewerFrame extends JFrame {
+public class PresentationViewerFrame extends JFrame {
 	private static final long serialVersionUID = 3227L;
 	
 	private static final String JABTITLE = "Jabberpoint 1.6 - OU";
@@ -30,16 +31,18 @@ public class SlideViewerFrame extends JFrame {
 	
 	private SlideViewerComponent slideViewerComponent;
 	
-	public SlideViewerFrame(String title, Presentation presentation) {
-		super(title);
+	public PresentationViewerFrame() {
+		super("");
 		this.slideViewerComponent = new SlideViewerComponent();
 		//presentation.setShowView(slideViewerComponent);
-		setupWindow(slideViewerComponent, presentation);
+		setupWindow(slideViewerComponent);
+
+		AppState.$presentation.subscribe(presentation -> setTitle(presentation.getTitle()));
 	}
 
 // De GUI opzetten
 	public void setupWindow(SlideViewerComponent 
-			slideViewerComponent, Presentation presentation) {
+			slideViewerComponent) {
 		setTitle(JABTITLE);
 		addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {

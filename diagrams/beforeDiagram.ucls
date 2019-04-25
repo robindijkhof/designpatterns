@@ -64,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="view.SlideViewerFrame" project="designpatterns" 
+  <class id="8" language="java" name="view.PresentationViewerFrame" project="designpatterns"
     file="/designpatterns/src/view/SlideViewerFrame.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1109" y="129"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="view.BitmapItem" project="designpatterns" 
+  <class id="9" language="java" name="model.BitmapItem" project="designpatterns"
     file="/designpatterns/src/view/BitmapItem.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1382" y="719"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="view.TextItem" project="designpatterns" 
+  <class id="10" language="java" name="model.TextItem" project="designpatterns"
     file="/designpatterns/src/view/TextItem.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1021" y="722"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

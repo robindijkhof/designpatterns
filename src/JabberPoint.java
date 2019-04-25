@@ -2,11 +2,11 @@ import javax.swing.JOptionPane;
 import java.io.IOException;
 import model.*;
 
-import utils.Accessor;
+import utils.accessor.Accessor;
 import utils.AppState;
-import utils.XMLAccessor;
+import utils.accessor.XMLAccessor;
 import utils.themefactory.ThemeFactory;
-import view.SlideViewerFrame;
+import view.PresentationViewerFrame;
 import controller.PresentationController;
 import controller.MenuController;
 import controller.KeyController;
@@ -38,19 +38,20 @@ public class JabberPoint {
 	public JabberPoint(String argv[]) {
 		//Init the first theme
 		AppState.$appTheme.next(ThemeFactory.getTheme(1));
+		AppState.$presentation.next(loadPresentation(argv));
 
 		presentationController = new PresentationController();
 		
 		//To factories: //TODO: do these in a factory!
-		presentationController.setPresentation(loadPresentation(argv));
+
 
 		keyController = new KeyController(presentationController);
 		menuController  = new MenuController(presentationController);
 
 		//setup the controllers
-		SlideViewerFrame slideViewerFrame = this.presentationController.GetPresentationView().GetSlideViewerFrame();
-		slideViewerFrame.addKeyListener(new KeyController(presentationController));
-		slideViewerFrame.setMenuBar(new MenuController(presentationController));
+		PresentationViewerFrame presentationViewerFrame = this.presentationController.GetPresentationView();
+		presentationViewerFrame.addKeyListener(new KeyController(presentationController));
+		presentationViewerFrame.setMenuBar(new MenuController(presentationController));
 
 
 		//addKeyListener(new KeyController(presentation)); // een controller toevoegen
@@ -62,11 +63,12 @@ public class JabberPoint {
 	private Presentation loadPresentation(String argv[]) {
 		Presentation presentation = new Presentation();
 
+
 		try {
 			if (argv.length == 0) { // een demo presentatie
-				Accessor.getDemoAccessor().loadFile(presentation, "");
+				presentation = Accessor.getDemoAccessor().loadFile("");
 			} else {
-				new XMLAccessor().loadFile(presentation, argv[0]);
+				presentation = new XMLAccessor().loadFile(argv[0]);
 			}
 			//presentation.setSlideNumber(0);
 		} catch (IOException ex) {
@@ -86,7 +88,7 @@ public class JabberPoint {
 
 		//Style.createStyles();
 		// Presentation presentation = new Presentation();
-		//new SlideViewerFrame(JABVERSION, presentation);
+		//new PresentationViewerFrame(JABVERSION, presentation);
 		/*
 		try {
 			if (argv.length == 0) { // een demo presentatie

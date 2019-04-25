@@ -49,6 +49,9 @@ public class SlideViewerComponent extends JComponent {
 		//this.frame = frame;
 
 		AppState.$appTheme.subscribe(appTheme -> this.appTheme = appTheme);
+		AppState.$presentation.subscribe(presentation -> {
+			update(presentation.getSlide(presentation.currentSlide), presentation.currentSlide, presentation.getSize());
+		});
 
 
 
@@ -63,14 +66,8 @@ public class SlideViewerComponent extends JComponent {
 		this.slideNumberMax = slideNumberMax;
 		theme = appTheme.getTheme(slideNumberCurrent);
 
-		if (data == null) {
-			repaint();
-			return;
-		}
-		//this.presentation = presentation;
 		this.slide = data;
 		repaint();
-		//frame.setTitle(presentation.getTitle());
 	}
 
 // teken de slide

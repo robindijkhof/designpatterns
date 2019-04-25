@@ -1,6 +1,6 @@
-package utils;
+package utils.accessor;
 import model.*;
-import view.BitmapItem;
+import model.BitmapItem;
 
 /** Een ingebouwde demo-presentatie
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
@@ -14,7 +14,8 @@ import view.BitmapItem;
 
 class DemoPresentation extends Accessor {
 
-	public void loadFile(Presentation presentation, String unusedFilename) {
+	public Presentation loadFile(String unusedFilename) {
+		Presentation presentation = new Presentation();
 		presentation.setTitle("Demo Presentation");
 		Slide slide;
 		slide = new Slide();
@@ -50,6 +51,8 @@ class DemoPresentation extends Accessor {
 		slide.append(1, "Dit is het einde van de presentatie.");
 		slide.append(new BitmapItem(1, "JabberPoint.jpg"));
 		presentation.append(slide);
+
+		return presentation;
 	}
 
 	public void saveFile(Presentation presentation, String unusedFilename) {

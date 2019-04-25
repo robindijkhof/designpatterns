@@ -1,7 +1,8 @@
 package controller;
 import model.Presentation;
+import utils.AppState;
 import view.AboutBox;
-import view.PresentationView;
+import view.PresentationViewerFrame;
 
 /** <p>Verantwoordelijk voor aansturen van de presentatie. Beheert de presentation en de presentationView </p>
  * 
@@ -9,62 +10,48 @@ import view.PresentationView;
 
 public class PresentationController {
 	private Presentation presentation;
-	private PresentationView presentationView;
+	private PresentationViewerFrame presentationViewerFrame;
 	
-	int currentSlideNumber = 0;
-	
-	
-	
-	public int getSlideNumber() {
-		return currentSlideNumber;
+
+	public PresentationController(){
+		this.presentationViewerFrame = new PresentationViewerFrame();
+		AppState.$presentation.subscribe(presentation -> this.presentation = presentation);
 	}
 	
+
 	public void showAboutBox() {
-		//AboutBox.show(parent);
-		presentationView.showAboutBox();
+		AboutBox.show(presentationViewerFrame);
 	}
 	
 	public void clear() {
-		this.presentation.clear();
+		AppState.$presentation.next(new Presentation());
 	}
+
+
 	
-	public void setPresentation(Presentation presentation) {
-		this.presentation = presentation;
-		//this.presentationView.drawPresentation(presentation); //setup the current presentation
-		this.presentationView = new PresentationView(presentation);
-	}
-	
-	public Presentation GetPresentation() {
-		return presentation;
-	}
-	
-	
-	public PresentationView GetPresentationView() {
-		return this.presentationView;
+	public PresentationViewerFrame GetPresentationView() {
+		return this.presentationViewerFrame;
 	}
 
 	// verander het huidige-slide-nummer en laat het aan het window weten.
 	public void setSlideNumber(int number) {
-		currentSlideNumber = number;
-		
-		/*
-		if (slideViewComponent != null) {
-			slideViewComponent.update(this, getCurrentSlide());
-		}*/
-		this.presentationView.drawSlide(currentSlideNumber);
+		presentation.currentSlide = number;
+		AppState.$presentation.next(presentation);
 	}
 
 	// ga naar de vorige slide tenzij je aan het begin van de presentatie bent
 	public void prevSlide() {
-		if (currentSlideNumber > 0) {
-			setSlideNumber(currentSlideNumber - 1);
-	    }
+		if (presentation.currentSlide > 0) {
+			presentation.currentSlide -= 1;
+			AppState.$presentation.next(presentation);
+		}
 	}
 
 	// Ga naar de volgende slide tenzij je aan het einde van de presentatie bent.
 	public void nextSlide() {
-		if (currentSlideNumber < (presentation.getSize()-1)) {
-			setSlideNumber(currentSlideNumber + 1);
+		if (presentation.currentSlide < (presentation.getSize()-1)) {
+			presentation.currentSlide += 1;
+			AppState.$presentation.next(presentation);
 		}
 	}
 	

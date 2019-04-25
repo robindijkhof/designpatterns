@@ -4,7 +4,7 @@ import view.SlideViewerComponent;
 
 /**
  * <p>Presentation houdt de slides in de presentatie bij.</p>
- * <p>Er is slechts één instantie van deze klasse aanwezig.</p>
+ * <p>Er is slechts ï¿½ï¿½n instantie van deze klasse aanwezig.</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.1 2002/12/17 Gert Florijn
  * @version 1.2 2003/11/19 Sylvia Stuurman
@@ -15,20 +15,17 @@ import view.SlideViewerComponent;
  */
 
 public class Presentation {
+	public int currentSlide = 0;
 	private String showTitle; // de titel van de presentatie
-	private ArrayList<Slide> showList = null; // een ArrayList met de Slides
+	private ArrayList<Slide> showList = new ArrayList<>(); // een ArrayList met de Slides
 	//private int currentSlideNumber = 0; // het slidenummer van de huidige Slide
 	//private SlideViewerComponent slideViewComponent = null; // de viewcomponent voor de Slides
 
 	public Presentation() {
 		//slideViewComponent = null;
-		clear();
 	}
 
-	public Presentation(SlideViewerComponent slideViewerComponent) {
-		//this.slideViewComponent = slideViewerComponent;
-		clear();
-	}
+
 
 	public int getSize() {
 		return showList.size();
@@ -79,11 +76,6 @@ public class Presentation {
 		}
 	}*/
 
-	// Verwijder de presentatie, om klaar te zijn voor de volgende
-	public void clear() {
-		showList = new ArrayList<Slide>();
-		//setSlideNumber(-1);
-	}
 
 	// Voeg een slide toe aan de presentatie
 	public void append(Slide slide) {
