@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import model.SlideItem;
 import model.Style;
+import view.ImageDrawer;
 
 
 /** <p>De klasse voor een Bitmap item</p>
@@ -49,6 +50,10 @@ public class BitmapItem extends SlideItem {
 	public String getName() {
 		return imageName;
 	}
+	
+	public BufferedImage GetBufferedImage() {
+		return bufferedImage;
+	}
 
 // geef de bounding box van de afbeelding
 	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
@@ -68,5 +73,10 @@ public class BitmapItem extends SlideItem {
 
 	public String toString() {
 		return "BitmapItem[" + getLevel() + "," + imageName + "]";
+	}
+
+	@Override
+	protected void CreateDrawer() {
+		this.drawer = new ImageDrawer();
 	}
 }

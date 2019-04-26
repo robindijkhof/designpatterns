@@ -1,7 +1,7 @@
-package utils.themefactory;
+package utils.factory.appTheme;
 
 import model.AppTheme;
 
-public interface AbstractThemeFactory {
-    public AppTheme getTheme();
+public interface AbstractAppThemeFactory {
+    public AppTheme getAppTheme();
 }

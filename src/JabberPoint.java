@@ -5,7 +5,7 @@ import model.*;
 import utils.accessor.Accessor;
 import utils.AppState;
 import utils.accessor.XMLAccessor;
-import utils.themefactory.ThemeFactory;
+import utils.factory.appTheme.AppThemeFactory;
 import view.PresentationViewerFrame;
 import controller.PresentationController;
 import controller.MenuController;
@@ -37,7 +37,7 @@ public class JabberPoint {
 
 	public JabberPoint(String argv[]) {
 		//Init the first theme
-		AppState.$appTheme.next(ThemeFactory.getTheme(1));
+		AppState.$appTheme.next(AppThemeFactory.getTheme(0));
 		AppState.$presentation.next(loadPresentation(argv));
 
 		presentationController = new PresentationController();

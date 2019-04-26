@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import model.SlideItem;
 import model.Style;
+import view.TextDrawer;
 import model.Slide;
 
 /** <p>Een tekst item.</p>
@@ -78,6 +79,7 @@ public class TextItem extends SlideItem {
 	}
 
 // teken het item
+	/*
 	public void draw(int x, int y, float scale, Graphics g, 
 			Style myStyle, ImageObserver o) {
 		if (text == null || text.length() == 0) {
@@ -95,9 +97,9 @@ public class TextItem extends SlideItem {
 			layout.draw(g2d, pen.x, pen.y);
 			pen.y += layout.getDescent();
 		}
-	  }
+	  }*/
 
-	private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
+	public List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
 		List<TextLayout> layouts = new ArrayList<TextLayout>();
 		AttributedString attrStr = getAttributedString(s, scale);
     	Graphics2D g2d = (Graphics2D) g;
@@ -113,5 +115,11 @@ public class TextItem extends SlideItem {
 
 	public String toString() {
 		return "TextItem[" + getLevel()+","+getText()+"]";
+	}
+
+	@Override
+	protected void CreateDrawer() {
+		// TODO Auto-generated method stub
+		this.drawer = new TextDrawer();
 	}
 }

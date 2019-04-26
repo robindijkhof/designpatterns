@@ -1,18 +1,19 @@
-package utils.themefactory;
+package utils.factory.appTheme;
 
 import model.AppTheme;
 
-public class ThemeFactory {
-    private ThemeFactory(){}
+public class AppThemeFactory {
+    private AppThemeFactory(){}
 
 
     public static AppTheme getTheme(int themeNumber){
 
         switch (themeNumber){
-            case 0: return new DefaultThemeFactory().getTheme();
-            case 1: return new FirstThemeFactory().getTheme();
+            case 0: return new DefaultAppThemeFactory().getAppTheme();
+            case 1: return new SecondAppThemeFactory().getAppTheme();
+            case 2: return new ThirdAppThemeFactory().getAppTheme();
 
-            default: return new DefaultThemeFactory().getTheme();
+            default: return new DefaultAppThemeFactory().getAppTheme();
         }
     }
 }

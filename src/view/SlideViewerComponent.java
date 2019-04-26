@@ -27,7 +27,7 @@ public class SlideViewerComponent extends JComponent {
 	//private Presentation presentation = null; // de presentatie
 	//private JFrame frame = null;
 	private AppTheme appTheme;
-	private Theme theme;
+	//private Theme theme;
 
 	private static final long serialVersionUID = 227L;
 	
@@ -48,13 +48,16 @@ public class SlideViewerComponent extends JComponent {
 		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
 		//this.frame = frame;
 
-		AppState.$appTheme.subscribe(appTheme -> this.appTheme = appTheme);
+		AppState.$appTheme.subscribe(appTheme -> /*this.appTheme = appTheme*/ setAppTheme(appTheme));
 		AppState.$presentation.subscribe(presentation -> {
 			update(presentation.getSlide(presentation.currentSlide), presentation.currentSlide, presentation.getSize());
 		});
-
-
-
+	}
+	
+	
+	public void setAppTheme(AppTheme appTheme) {
+		this.appTheme = appTheme;
+		repaint();
 	}
 
 	public Dimension getPreferredSize() {
@@ -64,7 +67,7 @@ public class SlideViewerComponent extends JComponent {
 	public void update(/*Presentation presentation,*/ Slide data, int slideNumberCurrent, int slideNumberMax) {
 		this.slideNumberCurrent = slideNumberCurrent;
 		this.slideNumberMax = slideNumberMax;
-		theme = appTheme.getTheme(slideNumberCurrent);
+		//theme = appTheme.getTheme(slideNumberCurrent);
 
 		this.slide = data;
 		repaint();
@@ -72,6 +75,7 @@ public class SlideViewerComponent extends JComponent {
 
 // teken de slide
 	public void paintComponent(Graphics g) {
+		Theme theme = appTheme.getTheme(slideNumberCurrent);
 		g.setColor(theme.color);
 		g.fillRect(0, 0, getSize().width, getSize().height);
 		/*

@@ -2,6 +2,7 @@ package model;
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
+import java.util.Collection;
 
 /** <p>De abstracte klasse voor een item op een Slide<p>
  * <p>Alle SlideItems hebben tekenfunctionaliteit.</p>
@@ -16,9 +17,12 @@ import java.awt.image.ImageObserver;
 
 public abstract class SlideItem {
 	private int level = 0; // het level van het slideitem
+	
+	public Drawer drawer;
 
 	public SlideItem(int lev) {
 		level = lev;
+		CreateDrawer(); //call factory method
 	}
 
 	public SlideItem() {
@@ -34,7 +38,13 @@ public abstract class SlideItem {
 	public abstract Rectangle getBoundingBox(Graphics g, 
 			ImageObserver observer, float scale, Style style);
 
+	
 // teken het item
-	public abstract void draw(int x, int y, float scale, 
-			Graphics g, Style style, ImageObserver observer);
+	public void draw(int x, int y, float scale, 
+			Graphics g, Style style, ImageObserver observer) {
+		this.drawer.draw(x, y, scale, g, style, observer, this);
+	}
+	
+	//factory method
+	protected abstract void CreateDrawer();
 }

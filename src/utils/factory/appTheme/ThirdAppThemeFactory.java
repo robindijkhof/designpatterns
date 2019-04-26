@@ -8,7 +8,7 @@ import utils.factory.theme.ThemeFactory;
 
 import java.awt.*;
 
-class DefaultAppThemeFactory implements AbstractAppThemeFactory {
+class ThirdAppThemeFactory implements AbstractAppThemeFactory {
     @Override
     public AppTheme getAppTheme() {
     	/*
@@ -24,6 +24,6 @@ class DefaultAppThemeFactory implements AbstractAppThemeFactory {
         };
 		*/
     	
-        return new AppTheme(ThemeFactory.getTheme(0), ThemeFactory.getTheme(1));
+        return new AppTheme(ThemeFactory.getTheme(1), ThemeFactory.getTheme(3));
     }
 }

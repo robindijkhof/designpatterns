@@ -14,6 +14,7 @@ import model.Presentation;
 import utils.accessor.Accessor;
 import utils.AppState;
 import utils.accessor.XMLAccessor;
+import utils.factory.appTheme.AppThemeFactory;
 
 /**
  * <p>De controller voor het menu</p>
@@ -29,22 +30,34 @@ public class MenuController extends MenuBar {
 
     private static final long serialVersionUID = 227L;
 
-    protected static final String ABOUT = "About";
+    //file menu
+    
     protected static final String FILE = "File";
     protected static final String EXIT = "Exit";
-    protected static final String GOTO = "Go to";
-    protected static final String HELP = "Help";
-    protected static final String NEW = "New";
-    protected static final String NEXT = "Next";
     protected static final String OPEN = "Open";
-    protected static final String PAGENR = "Page number?";
-    protected static final String PREV = "Prev";
+    protected static final String NEW = "New";
     protected static final String SAVE = "Save";
+    //view menu
     protected static final String VIEW = "View";
-
+    protected static final String GOTO = "Go to";
+    protected static final String NEXT = "Next";
+    protected static final String PREV = "Prev";
+    //theme menu
+    protected static final String THEME = "Theme";
+    protected static final String THEME1 = "Theme 1";
+    protected static final String THEME2 = "Theme 2";
+    protected static final String THEME3 = "Theme 3";
+    //help menu
+    protected static final String HELP = "Help";
+    protected static final String ABOUT = "About";
+    
+    
+    //goto prompt
+    protected static final String PAGENR = "Page number?";
+    //saving
     protected static final String TESTFILE = "test.xml";
     protected static final String SAVEFILE = "dump.xml";
-
+    //exceptions
     protected static final String IOEX = "IO Exception: ";
     protected static final String LOADERR = "Load Error";
     protected static final String SAVEERR = "Save Error";
@@ -54,10 +67,54 @@ public class MenuController extends MenuBar {
 
     public MenuController(/*Frame frame,*/ PresentationController presController) {
         presentationController = presController;
-        //parent = frame;
-        // presentation = pres;
-        MenuItem menuItem;
-        Menu fileMenu = new Menu(FILE);
+        createFileMenu();
+        createViewMenu();
+        createThemeMenu();
+        createHelpMenu();
+    }
+
+    private void createThemeMenu() {
+   	 MenuItem menuItem;
+   	 Menu themeMenu = new Menu(THEME);
+        themeMenu.add(menuItem = mkMenuItem(THEME1));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                AppState.$appTheme.next(AppThemeFactory.getTheme(0));
+            }
+        });
+        themeMenu.add(menuItem = mkMenuItem(THEME2));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+            	AppState.$appTheme.next(AppThemeFactory.getTheme(1));
+            }
+        });
+        themeMenu.add(menuItem = mkMenuItem(THEME3));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+            	AppState.$appTheme.next(AppThemeFactory.getTheme(2));
+            }
+        });
+        add(themeMenu);
+   }
+
+
+	private void createHelpMenu() {
+		MenuItem menuItem;
+		Menu helpMenu = new Menu(HELP);
+        helpMenu.add(menuItem = mkMenuItem(ABOUT));
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                //AboutBox.show(parent);
+                presentationController.showAboutBox();
+            }
+        });
+        setHelpMenu(helpMenu);        // nodig for portability (Motif, etc.).
+	}
+
+
+	private void createFileMenu() {
+		MenuItem menuItem;
+		Menu fileMenu = new Menu(FILE);
         fileMenu.add(menuItem = mkMenuItem(OPEN));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -113,42 +170,40 @@ public class MenuController extends MenuBar {
             }
         });
         add(fileMenu);
-        Menu viewMenu = new Menu(VIEW);
-        viewMenu.add(menuItem = mkMenuItem(NEXT));
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                //presentation.nextSlide();
-                presentationController.nextSlide();
-            }
-        });
-        viewMenu.add(menuItem = mkMenuItem(PREV));
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                //presentation.prevSlide();
-                presentationController.prevSlide();
-            }
-        });
-        viewMenu.add(menuItem = mkMenuItem(GOTO));
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
-                int pageNumber = Integer.parseInt(pageNumberStr);
-                //presentation.setSlideNumber(pageNumber - 1);
-                presentationController.setSlideNumber(pageNumber - 1);
-            }
-        });
-        add(viewMenu);
-        Menu helpMenu = new Menu(HELP);
-        helpMenu.add(menuItem = mkMenuItem(ABOUT));
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent) {
-                //AboutBox.show(parent);
-                presentationController.showAboutBox();
-            }
-        });
-        setHelpMenu(helpMenu);        // nodig for portability (Motif, etc.).
+	}
+    
+	
+    private void createViewMenu() {
+    	 MenuItem menuItem;
+    	 Menu viewMenu = new Menu(VIEW);
+         viewMenu.add(menuItem = mkMenuItem(NEXT));
+         menuItem.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent actionEvent) {
+                 //presentation.nextSlide();
+                 presentationController.nextSlide();
+             }
+         });
+         viewMenu.add(menuItem = mkMenuItem(PREV));
+         menuItem.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent actionEvent) {
+                 //presentation.prevSlide();
+                 presentationController.prevSlide();
+             }
+         });
+         viewMenu.add(menuItem = mkMenuItem(GOTO));
+         menuItem.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent actionEvent) {
+                 String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
+                 int pageNumber = Integer.parseInt(pageNumberStr);
+                 //presentation.setSlideNumber(pageNumber - 1);
+                 presentationController.setSlideNumber(pageNumber - 1);
+             }
+         });
+         add(viewMenu);
     }
-
+    
+   
+    
     // een menu-item aanmaken
     public MenuItem mkMenuItem(String name) {
         return new MenuItem(name, new MenuShortcut(name.charAt(0)));
