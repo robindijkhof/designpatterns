@@ -1,5 +1,4 @@
 package utils.factory.slideItem;
-
 import model.BitmapItem;
 import model.SlideItem;
 import model.TextItem;
