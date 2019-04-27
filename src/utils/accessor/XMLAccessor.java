@@ -46,12 +46,12 @@ public class XMLAccessor extends Accessor {
     protected static final String ITEM = "item";
     protected static final String LEVEL = "level";
     protected static final String KIND = "kind";
-    protected static final String TEXT = "text";
-    protected static final String IMAGE = "image";
+    //protected static final String TEXT = "text";
+    //protected static final String IMAGE = "image";
     
     /** tekst van messages */
     protected static final String PCE = "Parser Configuration Exception";
-    protected static final String UNKNOWNTYPE = "Unknown Element type";
+    //protected static final String UNKNOWNTYPE = "Unknown Element type";
     protected static final String NFE = "Number Format Exception";
     
     
