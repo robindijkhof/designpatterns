@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 import java.util.Vector;
 
+import utils.factory.slideItem.SlideItemFactory;
+
 /** <p>Een slide. Deze klasse heeft tekenfunctionaliteit.</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.1 2002/12/17 Gert Florijn
@@ -40,12 +42,14 @@ public class Slide {
 	// verander de titel van de slide
 	public void setTitle(String newTitle) {
 		/* Cre�er nu een TextItem op basis van de nieuwe titel */
-		title = new TextItem(0, newTitle);
+		//title = new TextItem(0, newTitle);
+		title = (TextItem)SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, 0, newTitle);
 	}
 
 	// Maak een TextItem van String, en voeg het TextItem toe
 	public void append(int level, String message) {
-		append(new TextItem(level, message));
+		//append(new TextItem(level, message));
+		append(SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, level, message));
 	}
 
 	// geef het betreffende SlideItem

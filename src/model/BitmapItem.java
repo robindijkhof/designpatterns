@@ -30,8 +30,8 @@ public class BitmapItem extends SlideItem {
   protected static final String NOTFOUND = " niet gevonden";
 
 // level staat voor het item-level; name voor de naam van het bestand met de afbeelding
-	public BitmapItem(int level, String name) {
-		super(level);
+	public BitmapItem(int level, String name, Drawer drawer) {
+		super(level, drawer);
 		imageName = name;
 		try {
 			bufferedImage = ImageIO.read(new File(imageName));
@@ -42,8 +42,8 @@ public class BitmapItem extends SlideItem {
 	}
 
 // Een leeg bitmap-item
-	public BitmapItem() {
-		this(0, null);
+	public BitmapItem(Drawer drawer) {
+		this(0, null, drawer);
 	}
 
 // geef de bestandsnaam van de afbeelding
@@ -75,8 +75,9 @@ public class BitmapItem extends SlideItem {
 		return "BitmapItem[" + getLevel() + "," + imageName + "]";
 	}
 
+	/*
 	@Override
 	protected void CreateDrawer() {
 		this.drawer = new ImageDrawer();
-	}
+	}*/
 }

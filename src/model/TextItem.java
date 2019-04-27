@@ -36,14 +36,14 @@ public class TextItem extends SlideItem {
 	private static final String EMPTYTEXT = "No Text Given";
 
 // een textitem van level level, met als tekst string
-	public TextItem(int level, String string) {
-		super(level);
+	public TextItem(int level, String string, Drawer drawer) {
+		super(level, drawer);
 		text = string;
 	}
 
 // een leeg textitem
-	public TextItem() {
-		this(0, EMPTYTEXT);
+	public TextItem(Drawer drawer) {
+		this(0, EMPTYTEXT, drawer);
 	}
 
 // Geef de tekst
@@ -117,9 +117,10 @@ public class TextItem extends SlideItem {
 		return "TextItem[" + getLevel()+","+getText()+"]";
 	}
 
+	/*
 	@Override
 	protected void CreateDrawer() {
 		// TODO Auto-generated method stub
 		this.drawer = new TextDrawer();
-	}
+	}*/
 }

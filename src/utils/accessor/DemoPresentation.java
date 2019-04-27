@@ -1,6 +1,7 @@
 package utils.accessor;
 import model.*;
 import model.BitmapItem;
+import utils.factory.slideItem.SlideItemFactory;
 
 /** Een ingebouwde demo-presentatie
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
@@ -49,7 +50,8 @@ class DemoPresentation extends Accessor {
 		slide.append(2, "gebruik File->Open uit het menu.");
 		slide.append(1, " ");
 		slide.append(1, "Dit is het einde van de presentatie.");
-		slide.append(new BitmapItem(1, "JabberPoint.jpg"));
+		//slide.append(new BitmapItem(1, "JabberPoint.jpg"));
+		slide.append(SlideItemFactory.createSlideItem(SlideItemFactory.IMAGE, 1, "JabberPoint.jpg"));
 		presentation.append(slide);
 
 		return presentation;

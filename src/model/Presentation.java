@@ -26,7 +26,6 @@ public class Presentation {
 	}
 
 
-
 	public int getSize() {
 		return showList.size();
 	}

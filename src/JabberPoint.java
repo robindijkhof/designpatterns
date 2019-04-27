@@ -62,8 +62,6 @@ public class JabberPoint {
 	//TODO: needs to be done in factory
 	private Presentation loadPresentation(String argv[]) {
 		Presentation presentation = new Presentation();
-
-
 		try {
 			if (argv.length == 0) { // een demo presentatie
 				presentation = Accessor.getDemoAccessor().loadFile("");

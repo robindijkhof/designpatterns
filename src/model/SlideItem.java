@@ -18,21 +18,23 @@ import java.util.Collection;
 public abstract class SlideItem {
 	private int level = 0; // het level van het slideitem
 	
-	public Drawer drawer;
+	private Drawer drawer;
 
-	public SlideItem(int lev) {
+	public SlideItem(int lev, Drawer drawer) {
+		this.drawer = drawer;
 		level = lev;
-		CreateDrawer(); //call factory method
+		//CreateDrawer(); //call factory method
 	}
 
-	public SlideItem() {
-		this(0);
+	public SlideItem(Drawer drawer) {
+		this(0, drawer);
 	}
 
 // Geef het level
 	public int getLevel() {
 		return level;
 	}
+
 
 // Geef de bounding box
 	public abstract Rectangle getBoundingBox(Graphics g, 
@@ -45,6 +47,8 @@ public abstract class SlideItem {
 		this.drawer.draw(x, y, scale, g, style, observer, this);
 	}
 	
+	/*
 	//factory method
 	protected abstract void CreateDrawer();
+	*/
 }
