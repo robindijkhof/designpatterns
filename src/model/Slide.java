@@ -21,7 +21,8 @@ public class Slide {
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 800;
 	/* Geen String meer maar een TextItem */
-	protected TextItem title; // de titel wordt apart bewaard
+	protected SlideItem titleSlideItem; // de titel wordt apart bewaard
+	protected String title = "";
 	protected Vector<SlideItem> items; // de slide-items worden in een Vector bewaard
 
 	public Slide() {
@@ -36,14 +37,16 @@ public class Slide {
 	// geef de titel van de slide
 	public String getTitle() {
 		/* Geef nu de tekst van het TextItem terug */
-		return title.getText();
+		//return titleSlideItem.getText();
+		return title;
 	}
 
 	// verander de titel van de slide
 	public void setTitle(String newTitle) {
 		/* Cre�er nu een TextItem op basis van de nieuwe titel */
 		//title = new TextItem(0, newTitle);
-		title = (TextItem)SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, 0, newTitle);
+		title = newTitle;
+		titleSlideItem = (TextItem)SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, 0, newTitle);
 	}
 
 	// Maak een TextItem van String, en voeg het TextItem toe
@@ -71,7 +74,7 @@ public class Slide {
 		float scale = getScale(area);
 	    int y = area.y;
 		/* De titel hoeft niet meer apart behandeld te worden */
-	    SlideItem slideItem = this.title;
+	    SlideItem slideItem = this.titleSlideItem;
 	    Style style = theme.getStyle(slideItem.getLevel());
 	    slideItem.draw(area.x, y, scale, g, style, view);
 	    y += slideItem.getBoundingBox(g, view, scale, style).height;
