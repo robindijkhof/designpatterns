@@ -16,12 +16,11 @@ public class ImageDrawer implements Drawer {
 	public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer, SlideItem slideItem) {
 		
 		BufferedImage bufferedImage = ((BitmapItem)slideItem).GetBufferedImage();
-		// TODO Auto-generated method stub
 		int width = x + (int) (style.indent * scale);
 		int height = y + (int) (style.leading * scale);
 		g.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
                 (int) (bufferedImage.getHeight(observer)*scale), observer);
 	}
-	
+
 		
 }

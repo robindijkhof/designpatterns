@@ -16,7 +16,7 @@ public class Observable<T> {
         this.object = object;
     }
 
-    // Subscribes to the observable. Inmediatelly return the last object to the observer.
+    // Subscribes to the observable. Immediately return the last object to the observer.
     public Subscription subscribe(Observer<T> observer){
         observers.add(observer);
         observer.onResult(object);

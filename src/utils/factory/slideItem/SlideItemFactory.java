@@ -10,21 +10,7 @@ public class SlideItemFactory {
 	protected static final String UNKNOWNTYPE = "Unknown Element type";
     public static final String TEXT = "text";
     public static final String IMAGE = "image";
-	
-	/*
-	public static SlideItem createTextSlideItem(int level, String text) {
-		TextDrawer textDrawer = new TextDrawer();
-		SlideItem slideItem = new TextItem(level, text, textDrawer);
-		
-		return slideItem;
-	}
-	
-	public static SlideItem createImageSlideItem(int level, String text) {
-		ImageDrawer imageDrawer = new ImageDrawer();
-		SlideItem slideItem = new BitmapItem(level, text, imageDrawer);
-		return slideItem;
-	}*/
-	
+
 	
 	public static SlideItem createSlideItem(String type, int level, String text) {
 		SlideItem result = null;

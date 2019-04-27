@@ -42,11 +42,9 @@ public class SlideViewerComponent extends JComponent {
 	private int slideNumberCurrent = 0;
 	private int slideNumberMax = 0;
 
-	public SlideViewerComponent(/*Presentation pres , JFrame frame*/) {
+	public SlideViewerComponent() {
 		setBackground(BGCOLOR); 
-		//presentation = pres;
 		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
-		//this.frame = frame;
 
 		AppState.$appTheme.subscribe(appTheme -> /*this.appTheme = appTheme*/ setAppTheme(appTheme));
 		AppState.$presentation.subscribe(presentation -> {
@@ -64,10 +62,9 @@ public class SlideViewerComponent extends JComponent {
 		return new Dimension(Slide.WIDTH, Slide.HEIGHT);
 	}
 
-	public void update(/*Presentation presentation,*/ Slide data, int slideNumberCurrent, int slideNumberMax) {
+	public void update(Slide data, int slideNumberCurrent, int slideNumberMax) {
 		this.slideNumberCurrent = slideNumberCurrent;
 		this.slideNumberMax = slideNumberMax;
-		//theme = appTheme.getTheme(slideNumberCurrent);
 
 		this.slide = data;
 		repaint();
@@ -78,10 +75,6 @@ public class SlideViewerComponent extends JComponent {
 		Theme theme = appTheme.getTheme(slideNumberCurrent);
 		g.setColor(theme.color);
 		g.fillRect(0, 0, getSize().width, getSize().height);
-		/*
-		if (presentation.getSlideNumber() < 0 || slide == null) {
-			return;
-		}*/
 
 		if(slide == null) {
 			return;
@@ -89,10 +82,6 @@ public class SlideViewerComponent extends JComponent {
 
 		g.setFont(labelFont);
 		g.setColor(COLOR);
-
-		/*
-		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
-                 presentation.getSize(), XPOS, YPOS);  //TODO: add functionality*/
 
 		if(theme.showPageNumber){
 			g.drawString("Slide " + (1 + slideNumberCurrent) + " of " + slideNumberMax, XPOS, YPOS);

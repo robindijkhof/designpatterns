@@ -23,7 +23,6 @@ public abstract class SlideItem {
 	public SlideItem(int lev, Drawer drawer) {
 		this.drawer = drawer;
 		level = lev;
-		//CreateDrawer(); //call factory method
 	}
 
 	public SlideItem(Drawer drawer) {
@@ -46,9 +45,5 @@ public abstract class SlideItem {
 			Graphics g, Style style, ImageObserver observer) {
 		this.drawer.draw(x, y, scale, g, style, observer, this);
 	}
-	
-	/*
-	//factory method
-	protected abstract void CreateDrawer();
-	*/
+
 }

@@ -37,21 +37,18 @@ public class Slide {
 	// geef de titel van de slide
 	public String getTitle() {
 		/* Geef nu de tekst van het TextItem terug */
-		//return titleSlideItem.getText();
 		return title;
 	}
 
 	// verander de titel van de slide
 	public void setTitle(String newTitle) {
 		/* Cre�er nu een TextItem op basis van de nieuwe titel */
-		//title = new TextItem(0, newTitle);
 		title = newTitle;
 		titleSlideItem = (TextItem)SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, 0, newTitle);
 	}
 
 	// Maak een TextItem van String, en voeg het TextItem toe
 	public void append(int level, String message) {
-		//append(new TextItem(level, message));
 		append(SlideItemFactory.createSlideItem(SlideItemFactory.TEXT, level, message));
 	}
 

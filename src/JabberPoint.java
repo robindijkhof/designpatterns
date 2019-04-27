@@ -30,37 +30,25 @@ public class JabberPoint {
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 
-	private PresentationController presentationController;
-	private MenuController menuController;
-	private KeyController keyController;
 
-
-	public JabberPoint(String argv[]) {
+	public JabberPoint(String[] argv) {
 		//Init the first theme
 		AppState.$appTheme.next(AppThemeFactory.getTheme(0));
 		AppState.$presentation.next(loadPresentation(argv));
 
-		presentationController = new PresentationController();
-		
-		//To factories: //TODO: do these in a factory!
-
-
-		keyController = new KeyController(presentationController);
-		menuController  = new MenuController(presentationController);
+		PresentationController presentationController = new PresentationController();
+		KeyController keyController = new KeyController(presentationController);
+		MenuController menuController  = new MenuController(presentationController);
 
 		//setup the controllers
-		PresentationViewerFrame presentationViewerFrame = this.presentationController.GetPresentationView();
+		PresentationViewerFrame presentationViewerFrame = presentationController.GetPresentationView();
 		presentationViewerFrame.addKeyListener(new KeyController(presentationController));
 		presentationViewerFrame.setMenuBar(new MenuController(presentationController));
 
-
-		//addKeyListener(new KeyController(presentation)); // een controller toevoegen
-		//setMenuBar(new MenuController(this, presentation));	// nog een controller toevoegen
 	}
 
 
-	//TODO: needs to be done in factory
-	private Presentation loadPresentation(String argv[]) {
+	private Presentation loadPresentation(String[] argv) {
 		Presentation presentation = new Presentation();
 		try {
 			if (argv.length == 0) { // een demo presentatie
@@ -68,7 +56,6 @@ public class JabberPoint {
 			} else {
 				presentation = new XMLAccessor().loadFile(argv[0]);
 			}
-			//presentation.setSlideNumber(0);
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null,
 					IOERR + ex, JABERR,
@@ -79,27 +66,8 @@ public class JabberPoint {
 
 
 	/** Het Main Programma */
-	public static void main(String argv[]) {
-		JabberPoint jabberPoint = new JabberPoint(argv);
-
-		//this.presentationController = new PresentationController();
-
-		//Style.createStyles();
-		// Presentation presentation = new Presentation();
-		//new PresentationViewerFrame(JABVERSION, presentation);
-		/*
-		try {
-			if (argv.length == 0) { // een demo presentatie
-				Accessor.getDemoAccessor().loadFile(presentation, "");
-			} else {
-				new XMLAccessor().loadFile(presentation, argv[0]);
-			}
-			presentation.setSlideNumber(0);
-		} catch (IOException ex) {
-			JOptionPane.showMessageDialog(null,
-					IOERR + ex, JABERR,
-					JOptionPane.ERROR_MESSAGE);
-		}*/
+	public static void main(String[] argv) {
+		new JabberPoint(argv);
 	}
 
 

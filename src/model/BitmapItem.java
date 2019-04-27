@@ -75,9 +75,4 @@ public class BitmapItem extends SlideItem {
 		return "BitmapItem[" + getLevel() + "," + imageName + "]";
 	}
 
-	/*
-	@Override
-	protected void CreateDrawer() {
-		this.drawer = new ImageDrawer();
-	}*/
 }

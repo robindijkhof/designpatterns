@@ -31,7 +31,6 @@ public class MenuController extends MenuBar {
     private static final long serialVersionUID = 227L;
 
     //file menu
-    
     protected static final String FILE = "File";
     protected static final String EXIT = "Exit";
     protected static final String OPEN = "Open";
@@ -127,19 +126,14 @@ public class MenuController extends MenuBar {
                     AppState.$presentation.next(presentation);
                 } catch (IOException exc) {
                     System.out.println("TODO: error message is not shown");
-					/* JOptionPane.showMessageDialog(parent, IOEX + exc, 
-         			LOADERR, JOptionPane.ERROR_MESSAGE); */
                 }
-                //parent.repaint();
 
             }
         });
         fileMenu.add(menuItem = mkMenuItem(NEW));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                //presentation.clear();
 				presentationController.clear();
-                //parent.repaint();
             }
         });
         fileMenu.add(menuItem = mkMenuItem(SAVE));
@@ -153,8 +147,6 @@ public class MenuController extends MenuBar {
                         xmlAccessor.saveFile(presentation, SAVEFILE);
                     } catch (IOException exc) {
                         System.out.println("TODO: error message is not shown");
-					/*JOptionPane.showMessageDialog(parent, IOEX + exc,
-							SAVEERR, JOptionPane.ERROR_MESSAGE); */
                     }
                 }).unsubscribe();
 
@@ -165,7 +157,6 @@ public class MenuController extends MenuBar {
         fileMenu.add(menuItem = mkMenuItem(EXIT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                //presentation.exit(0);
                 presentationController.exit(0);
             }
         });

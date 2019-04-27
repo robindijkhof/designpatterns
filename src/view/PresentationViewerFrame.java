@@ -34,7 +34,6 @@ public class PresentationViewerFrame extends JFrame {
 	public PresentationViewerFrame() {
 		super("");
 		this.slideViewerComponent = new SlideViewerComponent();
-		//presentation.setShowView(slideViewerComponent);
 		setupWindow(slideViewerComponent);
 
 		AppState.$presentation.subscribe(presentation -> setTitle(presentation.getTitle()));
@@ -50,8 +49,6 @@ public class PresentationViewerFrame extends JFrame {
 				}
 			});
 		getContentPane().add(slideViewerComponent);
-		//addKeyListener(new KeyController(presentation)); // een controller toevoegen
-		//setMenuBar(new MenuController(this, presentation));	// nog een controller toevoegen
 		setSize(new Dimension(WIDTH, HEIGHT)); // Dezelfde maten als Slide hanteert.
 		setVisible(true);
 	}
